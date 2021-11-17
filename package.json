@@ -1,0 +1,36 @@
+{
+  "name": "spine-loader",
+  "version": "1.0.0",
+  "description": "Webpack loader for spine-animations",
+  "main": "src/index.js",
+  "files": ["src"],
+  "scripts": {
+    "lint": "eslint ./src --ext .js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aapavlov1994/spine-loader.git"
+  },
+  "keywords": [
+    "webpack",
+    "loader",
+    "spine",
+    "animation"
+  ],
+  "author": "Anton Pavlov <aapavlov1994@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aapavlov1994/spine-loader/issues"
+  },
+  "homepage": "https://github.com/aapavlov1994/spine-loader#readme",
+  "dependencies": {
+    "find-cache-dir": "^3.3.2",
+    "multi-sprite-creator": "^2.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-sonarjs": "^0.10.0"
+  }
+}
