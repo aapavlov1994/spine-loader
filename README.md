@@ -13,8 +13,15 @@ rules.push({
   include: /spine/,
   loader: 'spine-loader',
 });
+
 // some place in src
 const config = require('@/assets/spine/goblin/index.json')
+
+// output
+config.skeleton.sprite.src // sprite image
+config.skeleton.sprite.map // sprite map string
+// also you can check your sprite in
+// node_modules/.cache/spine-loader
 ```
 
 A typical structure of file with animations should
