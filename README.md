@@ -1,5 +1,5 @@
 # spine-loader
-Webpack loader for configurating spine-animations
+Webpack loader for configuring spine-animations
 
 ### Usage
 
@@ -15,13 +15,33 @@ rules.push({
 });
 
 // some place in src
-const config = require('@/assets/spine/goblin/index.json')
+const configFromJSON = require('@/assets/spine/goblin/index.json')
 
 // output
-config.skeleton.sprite.src // sprite image
-config.skeleton.sprite.map // sprite map string
+configFromJSON.skeleton.sprite.src // sprite image
+configFromJSON.skeleton.sprite.map // sprite map string
 // also you can check your sprite in
 // node_modules/.cache/spine-loader
+
+// example usage with PIXI and Spine plugin
+const { src, map } = configFromJSON.skeleton.sprite;
+const img = document.createElement('img');
+img.setAttribute('src', src);
+img.onload = () => {
+  const spineAtlas = new PIXI.spine
+    .TextureAtlas(map, (line, callback) => {
+      callback(PIXI.Texture.from(img).baseTexture);
+    });
+
+  const spineAtlasLoader = new PIXI.spine.AtlasAttachmentLoader(spineAtlas);
+  const spineJsonParser = new PIXI.spine.SkeletonJson(spineAtlasLoader);
+
+  const spineData = spineJsonParser.readSkeletonData(configFromJSON);
+  spineData.initScale = configFromJSON.skeleton.scale;
+
+  const spineAnim = new PIXI.spine.Spine(spineData); // your animation instance
+  spineAnim.scale.set(spineData.initScale);
+};
 ```
 
 A typical structure of file with animations should
@@ -48,5 +68,5 @@ rules.push({
   }
 });
 // or like this
-const config = require('@/assets/spine/goblin/index.json?{"scale":0.2}')
+const configFromJSON = require('@/assets/spine/goblin/index.json?{"scale":0.2}')
 ```

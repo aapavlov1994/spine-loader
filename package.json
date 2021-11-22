@@ -1,6 +1,6 @@
 {
   "name": "spine-loader",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Webpack loader for spine-animations",
   "main": "src/index.js",
   "files": ["src"],
