@@ -11,7 +11,7 @@ async function spineLoader(buffer) {
   const onComplete = this.async();
   const { assets, emptyAssetsProps } = getAssetsProps.call(this, spineConfig, skins);
   const [sprite] = await create(assets, { ...defaultSpriteConfig, scale });
-  Object.assign(sprite.map, emptyAssetsProps);
+  sprite.map = [...sprite.map, ...emptyAssetsProps];
   const spritePath = getSpritePath(this);
   await writeFile(spritePath, sprite.image);
   this.resolve(spritePath, '', () => { this.dependency(spritePath); });
